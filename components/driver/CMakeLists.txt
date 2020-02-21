@@ -3,7 +3,7 @@ set(srcs
     "gpio.c"
     "i2c.c"
     "i2s.c"
-    "ledc.c"
+#    "ledc.c"
     "mcpwm.c"
     "pcnt.c"
     "periph_ctrl.c"
