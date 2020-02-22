@@ -217,7 +217,10 @@ static esp_err_t image_load(esp_image_load_mode_t mode, const esp_partition_pos_
 
 #ifdef SECURE_BOOT_CHECK_SIGNATURE
             // secure boot images have a signature appended
-            err = verify_secure_boot_signature(sha_handle, data);
+            if(!esp_cpu_in_ocd_debug_mode())
+            {
+                err = verify_secure_boot_signature(sha_handle, data);
+            }
 #else
             // No secure boot, but SHA-256 can be appended for basic corruption detection
             if (sha_handle != NULL && !esp_cpu_in_ocd_debug_mode()) {
